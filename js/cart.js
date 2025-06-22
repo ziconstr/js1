@@ -1,39 +1,46 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const cartItems = document.getElementById("cart-items");
-  const cartTotal = document.getElementById("cart-total");
-  const checkoutButton = document.getElementById("checkout");
+import { fetchProductById } from './api.js';
 
-  if (cart.length === 0) {
-    cartItems.innerHTML = "<p>Your cart is empty.</p>";
-    cartTotal.innerHTML = "";
-    checkoutButton.style.display = "none";
+async function loadCart() {
+  const cartContainer = document.getElementById('cart-items');
+  const totalContainer = document.getElementById('cart-total');
+  const ids = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (ids.length === 0) {
+    cartContainer.innerHTML = '<p>Your cart is empty.</p>';
+    totalContainer.textContent = '';
     return;
   }
 
   let total = 0;
-  cartItems.innerHTML = "";
+  cartContainer.innerHTML = '';
 
-  cart.forEach(item => {
-    const itemTotal = item.price * item.quantity;
-    total += itemTotal;
+  for (let id of ids) {
+    try {
+      const product = await fetchProductById(id);
+      const price = product.discountedPrice < product.price ? product.discountedPrice : product.price;
+      total += price;
 
-    cartItems.innerHTML += `
-      <div class="cart-item">
-        <img src="${item.image}" alt="${item.title}">
+      const item = document.createElement('div');
+      item.classList.add('cart-item');
+      item.innerHTML = `
+        <img src="${product.image.url}" alt="${product.title}">
         <div>
-          <h3>${item.title}</h3>
-          <p>$${item.price} x ${item.quantity}</p>
-          <p><strong>$${itemTotal.toFixed(2)}</strong></p>
+          <h3>${product.title}</h3>
+          <p>$${price.toFixed(2)}</p>
         </div>
-      </div>
-    `;
-  });
+      `;
+      cartContainer.appendChild(item);
+    } catch (error) {
+      console.error("Error loading product:", error);
+    }
+  }
 
-  cartTotal.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
+  totalContainer.textContent = `Total: $${total.toFixed(2)}`;
+}
 
-  checkoutButton.addEventListener("click", () => {
-    localStorage.removeItem("cart");
-    window.location.href = "thankyou.html";
-  });
+document.getElementById('checkout').addEventListener('click', () => {
+  localStorage.removeItem('cart');
+  window.location.href = 'thankyou.html';
 });
+
+loadCart();

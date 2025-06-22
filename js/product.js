@@ -66,33 +66,31 @@ async function renderProduct() {
     const hasDiscount = product.discountedPrice < product.price;
 
     container.innerHTML = `
-      <div class="container">
-        <div class="image">
-          <img src="${product.image.url}" alt="${product.title}">
-        </div>
-        <div class="product">
-          <span class="per">Movie</span>
-          <h1>${product.title}</h1>
-          <p>${product.description}</p>
-
-          ${
-            hasDiscount
-              ? `<div class="price">$${product.discountedPrice}</div>
-                 <div class="old-price">$${product.price}</div>`
-              : `<div class="price">$${product.price}</div>`
-          }
-
-          <a class="add-card" href="#" id="add-to-cart">
-            <i class="fa-solid fa-cart-shopping"></i>Add to Cart
-          </a>
+      <div class="product-container">
+        <div class="container">
+          <div class="image">
+            <img src="${product.image.url}" alt="${product.title}">
+          </div>
+          <div class="product">
+            <span class="per">Movie</span>
+            <h1>${product.title}</h1>
+            <p>${product.description}</p>
+            ${
+              hasDiscount
+                ? `<div class="price">$${product.discountedPrice}</div>
+                   <div class="old-price">$${product.price}</div>`
+                : `<div class="price">$${product.price}</div>`
+            }
+            <button class="add-card" id="add-to-cart">
+              <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+            </button>
+          </div>
         </div>
       </div>
     `;
 
-    // Add event listener after rendering
-    document.getElementById('add-to-cart').addEventListener('click', (e) => {
-      e.preventDefault();
-      addToCart(product);
+    document.getElementById('add-to-cart').addEventListener('click', () => {
+      addToCart(id);
     });
 
   } catch (error) {
@@ -100,23 +98,11 @@ async function renderProduct() {
   }
 }
 
-function addToCart(product) {
+function addToCart(id) {
   let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // Optional: Prevent duplicates
-  if (!cart.find(item => item.id === product.id)) {
-    cart.push(product);
-  }
-
+  cart.push(id);
   localStorage.setItem('cart', JSON.stringify(cart));
-  updateCartCount();
+  alert('Product added to cart!');
 }
 
-function updateCartCount() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  document.getElementById('cart-count').textContent = cart.length;
-}
-
-// Initial render
 renderProduct();
-updateCartCount();
