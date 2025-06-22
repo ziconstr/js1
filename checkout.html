@@ -1,282 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Square Eyes CA</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Square Eyes - Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://kit.fontawesome.com/ce1b7138a5.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <section>
-          <nav>
-            <input id="nav-toggle" type="checkbox">
-            <div class="logo" >
-                <a href="/index.html"><img src="images/Sq_logo.svg" alt=""></a></strong></div>
-            
-            <ul class="links">
-                <li><a href="/index.html">Home</a></li>
-                <li><a href="/movies.html">Movies</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-                <li><input class="search" type="text" placeholder="Search.."></li>
-            <a href="/checkout.html" class="cart_btn"><img src="images/shopping-cart.png" alt=""></a>
-            </ul>
-            <label for="nav-toggle" class="icon-burger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </label>
-            </nav>
-            
-        </section>
-        
-       <section>
-        <main>
-            <div class="container">
-                       <section class="catagory">
-                        <div>
-        <h2>Payment</h2>
-        <div class="row">
-  <div class="col-75">
-    <div class="payment_container">
-      <form action="/paid.html">
-      
-        <div class="row">
-          <div class="col-50">
-            <h4>Billing Address</h4>
-            <label for="fname">Full Name</label>
-            <input type="text" id="fname" name="firstname" placeholder="Zico Zico">
-            <label for="email"> Email</label>
-            <input type="text" id="email" name="email" placeholder="zico@squareeyes.com">
-            <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
-            <input type="text" id="adr" name="address" placeholder="no name street">
-            <label for="city"><i class="fa fa-institution"></i> City</label>
-            <input type="text" id="city" name="city" placeholder="Dubai">
 
-            <div class="row">
-              <div class="col-50">
-                <label for="state">State</label>
-                <input type="text" id="state" name="state" placeholder="unknown">
-              </div>
-              <div class="col-50">
-                <label for="zip">Zip</label>
-                <input type="text" id="zip" name="zip" placeholder="12345">
-              </div>
-            </div>
-          </div>
+  <header>
+    <nav>
+      <input id="nav-toggle" type="checkbox">
+      <div class="logo">
+        <a href="index.html"><img src="images/Sq_logo.svg" alt="Square Eyes Logo"></a>
+      </div>
+      <ul class="links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Movies</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><input class="search" type="text" placeholder="Search..."></li>
+        <li><a href="cart.html"><img src="images/shopping-cart.png" alt="Cart"></a></li>
+      </ul>
+      <label for="nav-toggle" class="icon-burger">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </label>
+    </nav>
+  </header>
 
-          <div class="col-50">
-            <h4>Payment</h4>
-            <label for="fname">Accepted Cards</label>
-            <div class="icon-container">
-              <i class="fa fa-cc-visa" style="color:navy;"></i>
-              <i class="fa fa-cc-amex" style="color:blue;"></i>
-              <i class="fa fa-cc-mastercard" style="color:red;"></i>
-              <i class="fa fa-cc-discover" style="color:orange;"></i>
-            </div>
-            <label for="cname">Name on Card</label>
-            <input type="text" id="cname" name="cardname" placeholder="Zico Zico">
-            <label for="ccnum">Credit card number</label>
-            <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
-            <label for="expmonth">Exp Month</label>
-            <input type="text" id="expmonth" name="expmonth" placeholder="April">
-            <div class="row">
-              <div class="col-50">
-                <label for="expyear">Exp Year</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2023">
-              </div>
-              <div class="col-50">
-                <label for="cvv">CVV</label>
-                <input type="text" id="cvv" name="cvv" placeholder="123">
-              </div>
-            </div>
-          </div>
-          
-        </div>
-        <label>
-          <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
-        </label>
-       </a><input type="submit" value="Continue to checkout" class="btn">
+  <main>
+    <div class="container">
+      <h1 class="catagory-text">Checkout</h1>
+
+      <form id="checkout-form">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="cardnumber">Card Number:</label>
+        <input type="text" id="cardnumber" name="cardnumber" required>
+
+        <label for="expdate">Expiration Date:</label>
+        <input type="text" id="expdate" name="expdate" required>
+
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" required>
+
+        <button type="submit" class="add">Complete Purchase</button>
       </form>
     </div>
-  </div>
-  <div class="col-25">
-    <div class="container_cart">
-      <h3>Cart <span class="price" style="color:rgb(255, 255, 255)"><i class="fa fa-shopping-cart"></i> <b>3 items</b></span></h3>
-      <p><a href="/puss.html"><img src="images/sq_6.jpeg" alt="" style="width: 25%"></a>Puss in boots</a> <span class="price">$19.99</span></p>
-      <p><a href="/puss.html"><img src="images/Square_Eyes_Cover7.jpeg" alt="" style="width: 25%"></a>The Batman</a> <span class="price">$19.99</span></p>
-      <p><a href="/puss.html"><img src="images/sq_3.jpg" alt="" style="width: 25%"></a>Slumberland</a> <span class="price">$19.99</span></p>
-      <hr>
-      <p>Total <span class="price" style="color:rgb(255, 255, 255)"><b>$59.97</b></span></p>
-    </div>
-  </div>
-                </div>
-                            </div>
-                          </div>                      
-                      </section>
-                      
+  </main>
 
-                      <section class="catagory">
-                        <h3 class="catagory-text">Continue Shopping</h3>
-                       <section class="movies_column">
-                        <div class="row">
-                        <div class="column">
-                          <div class="card">
-                            <img src="images/Square_Eyes_Cover1.jpeg"" alt="" style="width:100%">
-                            <div class="container-movies">
-                              <p>Fast & Furious Presents: Hobbs & Shaw</p>
-                              <p>2022 - 127m</p>
-                              <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-                      
-                        <div class="column">
-                          <div class="card">
-                            <img src="images/Square_Eyes_Cover2.jpeg" alt="Mike" style="width:100%">
-                            <div class="container-movies">
-                                <p>Godzilla: King of the Monsters</p>
-                                <p>2022 - 127m</p>
-                                <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="column">
-                          <div class="card">
-                            <img src="images/Square_Eyes_Cover4.jpeg"   alt="" style="width:100%">
-                            <div class="container-movies">
-                                <p>Once Upon a Time In Hollywood</p>
-                                <p>2022 - 127m</p>
-                                <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-
-                       <div class="column">
-                          <div class="card">
-                            <img src="images/Square_Eyes_Cover8.jpeg"  alt="" style="width:100%">
-                            <div class="container-movies">
-                                <p>Tom and Jerry: Snowmans Land</p>
-                                <p>2022 - 127m</p>
-                                <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="column">
-                            <div class="card">
-                              <img src="images/Square_Eyes_Cover2.jpeg" alt="" style="width:100%">
-                              <div class="container-movies">
-                                  <p>Lamborghini</p>
-                                  <p>2022 - 127m</p>
-                                  <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                              </div>
-                            </div>
-                          </div>
-
-                          
-                      </section>
-
-                      <section class="catagory">
-                       <section class="movies_column">
-                        <div class="row">
-                        <div class="column">
-                          <div class="card">
-                            <img src="images/sq_6.jpeg" alt="" style="width:100%">
-                            <div class="container-movies">
-                              <p>Puss in Boots: The Last Wish</p>
-                              <p>2022 - 127m</p>
-                              <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-                      
-                        <div class="column">
-                          <div class="card">
-                            <img src="images/Square_Eyes_Cover8.jpeg" alt="Mike" style="width:100%">
-                            <div class="container-movies">
-                                <p>Toy Story</p>
-                                <p>2022 - 127m</p>
-                                <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="column">
-                          <div class="card">
-                            <img src="images/Square_Eyes_Cover6.jpeg"   alt="" style="width:100%">
-                            <div class="container-movies">
-                                <p>The Addams Family 
-                                    Halloween</p>
-                                <p>2022 - 127m</p>
-                                <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-
-                       <div class="column">
-                          <div class="card">
-                            <img src="images/sq_3.jpg"  alt="" style="width:100%">
-                            <div class="container-movies">
-                                <p>Slumberland</p>
-                                <p>2022 - 127m</p>
-                                <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="column">
-                            <div class="card">
-                              <img src="images/sq_4.jpg" alt="" style="width:100%">
-                              <div class="container-movies">
-                                  <p>Tom and Jerry: Snowmans Land</p>
-                                  <p>2022 - 127m</p>
-                                  <p><a href="/checkout.html"><button class="button">Watch</button></a></p>
-                              </div>
-                            </div>
-                          </div>
-
-                          
-                      </section>
-            
-        </main>
+  <footer>
+    <div class="footer">
+      <div class="container">
+        <span><a href="https://twitter.com"><i class="fab fa-twitter"></i></a></span>
+        <span><a href="https://facebook.com"><i class="fab fa-facebook-f"></i></a></span>
+        <span><a href="https://youtube.com"><i class="fab fa-youtube"></i></a></span>
+        <span><a href="https://instagram.com"><i class="fab fa-instagram"></i></a></span>
       </div>
-    </section> 
-    <footer>
-      <div class="footer">
-          <div class="row">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <ul>
+        <li><a href="contact.html">Contact us</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+      </ul>
+      <div>Copyright © 2025 Square Eyes - All rights reserved</div>
+    </div>
+  </footer>
 
-            <div class="container">
-              <span><a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a></span>
-              <span><a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a></span>
-              <span><a href="https://www.youtube.com"><i class="fab fa-youtube"></i></a></span>
-              <span><a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a></span>
-            </div>
-          <div class="logo">
-              <a href="/index.html"><img src="images/Sq_logo.svg" alt=""></strong></a></div>
-          </div>
-          
-          <div class="row">
-          <ul>
-          <li><a href="/contact.html">Contact us</a></li>
-          <li><a href="/movies.html">Our Services</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Career</a></li>
-          </ul>
-          </div>
-          
-          <div class="row">
-          Copyright © 2023 Zico - All rights reserved
-          </div>
-          </div>
-    </footer>          
+  <script type="module" src="js/checkout.js"></script>
+  <script type="module" src="js/navbar.js"></script>
 </body>
 </html>
