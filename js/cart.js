@@ -1,43 +1,39 @@
-const container = document.getElementById('cart-container');
-
-function loadCart() {
-  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+document.addEventListener("DOMContentLoaded", () => {
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const cartItems = document.getElementById("cart-items");
+  const cartTotal = document.getElementById("cart-total");
+  const checkoutButton = document.getElementById("checkout");
 
   if (cart.length === 0) {
-    container.innerHTML = '<h2>Your cart is empty.</h2>';
+    cartItems.innerHTML = "<p>Your cart is empty.</p>";
+    cartTotal.innerHTML = "";
+    checkoutButton.style.display = "none";
     return;
   }
 
   let total = 0;
-  cart.forEach((item) => {
-    total += item.price;
+  cartItems.innerHTML = "";
 
-    const div = document.createElement('div');
-    div.classList.add('cart-item');
+  cart.forEach(item => {
+    const itemTotal = item.price * item.quantity;
+    total += itemTotal;
 
-    div.innerHTML = `
-      <img src="${item.image.url}" alt="${item.title}">
-      <div class="cart-item-info">
-        <h3>${item.title}</h3>
-        <p>$${item.price}</p>
+    cartItems.innerHTML += `
+      <div class="cart-item">
+        <img src="${item.image}" alt="${item.title}">
+        <div>
+          <h3>${item.title}</h3>
+          <p>$${item.price} x ${item.quantity}</p>
+          <p><strong>$${itemTotal.toFixed(2)}</strong></p>
+        </div>
       </div>
     `;
-    container.appendChild(div);
   });
 
-  const summary = document.createElement('div');
-  summary.classList.add('cart-summary');
-  summary.innerHTML = `
-    <p>Total: <span class="total">$${total.toFixed(2)}</span></p>
-    <button onclick="checkout()">Checkout</button>
-  `;
-  container.appendChild(summary);
-}
+  cartTotal.innerHTML = `<h3>Total: $${total.toFixed(2)}</h3>`;
 
-function checkout() {
-  alert('Thank you for your purchase!');
-  localStorage.removeItem('cart');
-  location.reload();
-}
-
-loadCart();
+  checkoutButton.addEventListener("click", () => {
+    localStorage.removeItem("cart");
+    window.location.href = "thankyou.html";
+  });
+});

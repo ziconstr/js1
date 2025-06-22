@@ -267,6 +267,47 @@ h1, h2, p, nav, a, button {
 
 
 
+.cart-item {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.cart-item img {
+  width: 100px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 1rem;
+}
+
+#cart-total {
+  margin-top: 2rem;
+  text-align: right;
+  font-size: 1.5rem;
+}
+
+#checkout {
+  display: block;
+  margin: 2rem auto;
+  background-color: #398864;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 7px;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+#checkout:hover {
+  background-color: #1f4d37;
+}
+
+
 
 /* Thank You Page Styling */
 .thankyou-container {
