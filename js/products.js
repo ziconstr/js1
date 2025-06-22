@@ -1,49 +1,34 @@
-import { fetchProductById } from "./api.js";
+import { fetchAllProducts } from './api.js';
 
-const queryString = document.location.search;
-const params = new URLSearchParams(queryString);
-const id = params.get("id");
+async function displayProducts() {
+  const container = document.getElementById('products-container');
+  container.innerHTML = '<p>Loading...</p>';
 
-async function loadProduct() {
   try {
-    const product = await fetchProductById(id);
+    const products = await fetchAllProducts();
+    container.innerHTML = '';
 
-    const productHTML = `
-    <div class="product-container">
-      <div class="container">
-        <div class="image">
-          <img src="${product.image.url}" alt="${product.title}">
-        </div>
-        <div class="product">
-          <span class="per">${product.tags.join(", ")}</span>
-          <h1>${product.title}</h1>
-          <p>${product.description}</p>
-          <div class="price">$${product.discountedPrice}</div>
-          <div class="old-price">$${product.price}</div>
-          <a href="#" class="add-card" data-id="${product.id}">
-            <i class="fas fa-shopping-cart"></i> Add to Cart
-          </a>
-        </div>
-      </div>
-    </div>`;
+    products.forEach(product => {
+      const card = document.createElement('div');
+      card.classList.add('movie-card');
 
-    document.getElementById("product-details").innerHTML = productHTML;
+      card.innerHTML = `
+        <a href="product.html?id=${product.id}">
+          <img src="${product.image.url}" alt="${product.image.alt}" />
+          <div class="info">
+            <h3>${product.title}</h3>
+            <p>$${product.discountedPrice}</p>
+          </div>
+        </a>
+      `;
 
-    document.querySelector(".add-card").addEventListener("click", (e) => {
-      e.preventDefault();
-      addToCart(product);
+      container.appendChild(card);
     });
 
-  } catch (err) {
-    document.getElementById("product-details").innerHTML = "<p>Product not found.</p>";
+  } catch (error) {
+    console.error(error);
+    container.innerHTML = '<p>Failed to load products.</p>';
   }
 }
 
-function addToCart(product) {
-  let cart = JSON.parse(localStorage.getItem("cart")) || [];
-  cart.push(product);
-  localStorage.setItem("cart", JSON.stringify(cart));
-  alert("Added to cart!");
-}
-
-loadProduct();
+displayProducts();
